@@ -337,3 +337,11 @@ blockquote {
   padding-right: 2em;
   background-color: rgba(0, 0, 0, 0.2);
 }
+
+.bubble {
+  color: $light;
+  background-color: $text-dark;
+  border-radius: 50%;
+  opacity: 0.8;
+  padding: 0.7rem 0.9rem;
+}
