@@ -1,4 +1,4 @@
-title: Microfrontends - Server Side Integration
+title: Introduction to Microfrontends
 class: animation-fade
 layout: true
 
@@ -7,13 +7,28 @@ layout: true
 
 ---
 
-class: impact center middle
+class: impact full-width
 
-# Introduction to Microfrontends
+.impact-wrapper[
+# {{title}}
+]
 
 ---
 
-class: impact center middle
+class: center middle
+
+![whywhathow](images/whywhathow.png)
+
+???
+
+- want to answer this 3 questions
+- what is a microfrontend
+- why would you use it
+- how can you get started
+
+---
+
+class: transition
 
 ## Mario Fernandez
 ## Matthias Kainer
@@ -24,7 +39,17 @@ class: impact center middle
 
 class: center middle
 
+## Let's start with some context
+ 
+---
+
+class: center middle
+
 ## .bubble[Nov 19] Tech Radar
+
+.bottom-right[
+thoughtworks.com/de/radar
+]
 
 --
 
@@ -38,15 +63,39 @@ class: center middle
 
 ---
 
+class: transition
+
+# What are microfrontends?
+
+---
+
 class: center middle
 
-# What is a microfrontend?
+## An architectural style where independently deliverable frontend applications are composed into a greater whole
 
 ---
 
-picture of a service decomposed in microfrontends
+class: center middle
+
+![microfrontends](images/microfrontends.png)
+
+.bottom-right[
+microfrontends.com
+]
 
 ---
+
+class: center middle
+
+![sample-app](images/sample-app.png)
+
+.bottom-right[
+microfrontends.com
+]
+
+---
+
+class: center middle
 
 ### martinfowler.com/articles/micro-frontends.html
 
@@ -54,7 +103,7 @@ picture of a service decomposed in microfrontends
 
 class: transition
 
-# Benefits
+# Why use them?
 
 ---
 
@@ -70,13 +119,7 @@ class: center middle
 
 class: center middle
 
-## Decoupling
-
----
-
-class: center middle
-
-## Independent deployment
+## Independent deployments
 
 ???
 
@@ -96,51 +139,110 @@ class: center middle
 
 class: impact
 
+.impact-wrapper[
 # A fundamental tradeoff
+]
 
 ---
 
-picture: autonomy vs speed vs complexity
+class: center middle
+
+![microfrontends-triangle](images/microfrontends-triangle.png)
+
+???
+
+- Tradeoffs involved
+- In order to gain autonomy, we have to sacrifice speed or increase complexity
+
+---
+
+class: center middle
+
+![abramov](images/abramov.png)
 
 ---
 
 class: impact
 
+.impact-wrapper[
 # Integration approaches
+]
 
 ---
 
-chart with dimensions
+class: center middle
 
-build time integration
-server side includes
-iframes
-client side composition (multiple approaches)
- - react components
- - the zalando lib
- - webcomponents
+![microfrontends-approaches](images/microfrontends-approaches.png)
 
 ---
 
 class: transition center middle
 
-## Build time integration
+# Build time integration
 
 ---
 
-lerna
+class: center middle
+
+# Idea
+## Divide application into separate npm packages aggregate them and deploy
 
 ---
 
-example of package structure
+class: center middle
+
+![microfrontends-build-time-integration](images/microfrontends-build-time-integration.png)
 
 ---
 
-how does a pipeline look like
+class: center middle
+
+## Lerna
+
+.bottom-right[
+github.com/lerna/lerna
+]
 
 ---
 
-pros / cons
+class: center middle
+
+```plaintext
+lerna.json
+package.json
+packages/
+  main/
+  header/
+  footer/
+  microfrontend1/
+  microfrontend2/
+```
+
+---
+
+class: center middle
+
+```json
+{
+  "lerna": "3.15.0",
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "packages": ["packages/*"]
+}
+```
+
+---
+
+class: center middle
+
+## .green[✔] Simple
+
+---
+
+class: center middle
+
+## .red[❌] Independent deployments
 
 ---
 
@@ -148,11 +250,15 @@ class: transition center middle
 
 ## Server Side Includes
 
+???
+
+- algo Edge Side Includes in Varnish
+
 ---
 
 class: center middle
 
-## what is a SSI?
+## What is a SSI?
 
 ---
 
@@ -162,11 +268,73 @@ class: center middle
 
 ---
 
-nginx config
+```nginx
+server {
+    listen 8080;
+    index index.html;
+    ssi on;
+
+    # Decide which HTML fragment to insert based on the URL
+    location /browse {
+        set $PAGE 'browse';
+    }
+
+    location /order {
+        set $PAGE 'order';
+    }
+
+    location /profile {
+        set $PAGE 'profile';
+    }
+}
+```
 
 ---
 
-pros/cons
+class: center middle
+
+
+```html
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>SSI Example</title>
+  </head>
+  <body>
+    <h1>Static header</h1>
+    <hr/>
+    <!--# include file="$PAGE.html" -->
+  </body>
+</html>
+```
+
+---
+
+class: center middle
+
+## Where is the microfrontend here?
+
+---
+
+class: center middle
+
+![microfrontends-ssi](images/microfrontends-ssi.png)
+
+???
+
+- not necessarily a new idea
+
+---
+
+class: center middle
+
+## .green[✔] (Still) Simple
+
+---
+
+class: center middle
+
+## .red[❌] Managing assets
 
 ---
 
@@ -178,28 +346,58 @@ class: center middle
 
 class: transition center middle
 
-## Interacting with a Backend
+# Server Side Rendering
 
 ---
 
-picture of cross comunication
+class: center middle
+
+## Example: Hypernova
+
+.bottom-right[
+github.com/airbnb/hypernova
+]
 
 ---
 
-no-go mixing sources
+class: transition center middle
+
+# Backend interaction
 
 ---
 
-talking about CI/CD
+class: center middle
 
+## Backend for frontend
+
+.bottom-right[
+samnewman.io/patterns/architectural/bff/
+]
 
 ---
 
-for MK
+class: center middle
 
-styling
-inter app communication
+![backend-integrations](images/backend-integrations.png)
 
+---
+
+class: center middle
+
+## Avoid coupling
+
+---
+
+class: transition center middle
+
+# CI/CD
+
+---
+
+class: center middle full-width white
+background-image: url(images/single-pipeline.png)
+
+---
 
 
 

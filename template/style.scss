@@ -1,9 +1,8 @@
 // Theme
 // ---------------------------------------------------------------------------
-
-$primary          : rgb(71, 128, 206);
-$secondary        : rgb(229, 137, 53);
-$tertiary         : rgb(43, 106, 108);
+$tertiary         : #A6E1FA;
+$secondary        : #0E6BA8;
+$primary          : #0A2472;
 $light            : #FFF;
 $dark             : #333;
 $text-dark        : #212121;
@@ -266,6 +265,10 @@ blockquote {
 
 .react-blue {
   color: $react-blue;
+}
+
+.green {
+  color: green;
 }
 
 .concourse {
