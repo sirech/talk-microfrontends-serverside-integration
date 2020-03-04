@@ -65,6 +65,23 @@ thoughtworks.com/de/radar
 
 class: transition
 
+# A typical scenario
+
+---
+
+class: center middle
+
+![frontend-monolith](images/frontend-monolith.png)
+
+???
+
+- We have seen a push to break services into smaller entities that can be maintained more easily
+- In many cases, the frontend has remained completely integrated, which many of the issues of monoliths
+
+---
+
+class: transition
+
 # What are microfrontends?
 
 ---
@@ -92,6 +109,10 @@ class: center middle
 .bottom-right[
 microfrontends.com
 ]
+
+???
+
+- There is an article from a colleague from us which goes into a lot of detail
 
 ---
 
@@ -158,6 +179,12 @@ class: center middle
 
 class: center middle
 
+## Not everybody is sold
+
+---
+
+class: center middle
+
 ![abramov](images/abramov.png)
 
 ---
@@ -184,7 +211,6 @@ class: transition center middle
 
 class: center middle
 
-# Idea
 ## Divide application into separate npm packages aggregate them and deploy
 
 ---
@@ -268,6 +294,25 @@ class: center middle
 
 ---
 
+class: center middle
+
+
+```html
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>SSI Example</title>
+  </head>
+  <body>
+    <h1>Static header</h1>
+    <hr/>
+    <!--# include file="$PAGE.html" -->
+  </body>
+</html>
+```
+
+---
+
 ```nginx
 server {
     listen 8080;
@@ -287,25 +332,6 @@ server {
         set $PAGE 'profile';
     }
 }
-```
-
----
-
-class: center middle
-
-
-```html
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>SSI Example</title>
-  </head>
-  <body>
-    <h1>Static header</h1>
-    <hr/>
-    <!--# include file="$PAGE.html" -->
-  </body>
-</html>
 ```
 
 ---
@@ -396,6 +422,12 @@ class: transition center middle
 
 class: center middle full-width white
 background-image: url(images/single-pipeline.png)
+
+---
+
+class: center middle
+
+### github.com/sirech/talks/raw/master/2019-04-tw-build_pipelines.pdf
 
 ---
 
