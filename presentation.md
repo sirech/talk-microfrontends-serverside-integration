@@ -612,8 +612,460 @@ Let's remember to remove that slide, shall we?
 
 ---
 
+class: transition center middle
 
+# THEORY
+##  Not everything on a website can be put behind a shared Varnish
 
+---
 
+## Not everything on a website can be put behind a shared Varnish
 
+### Assumptions
+
+---
+
+## Not everything on a website can be put behind a shared Varnish
+
+### Assumptions
+1. There exists a setup where multiple teams create content for one website
+
+---
+
+## Not everything on a website can be put behind a shared Varnish
+
+### Assumptions
+1. There exists a setup where multiple teams create content for one website
+2. There exist at least two teams in the world that don't share the same tool/infrastructure
+
+---
+
+## Not everything on a website can be put behind a shared Varnish
+
+### Assumptions
+1. There exists a setup where multiple teams create content for one website
+2. There exist at least two teams in the world that don't share the same tool/infrastructure
+
+### Statement
+If 1. and 2. are true there exists a number `x` of websites that are build by teams not sharing the same tools/infrastructure, where `x > 0`
+
+---
+
+## Not everything on a website can be put behind a shared Varnish
+
+### Assumptions
+1. There exists a setup where multiple teams create content for one website
+2. There exist at least two teams in the world that don't share the same tool/infrastructure
+
+### Statement
+If 1. and 2. are true there exists a number `x` of websites that are build by teams not sharing the same tools/infrastructure, where `x > 0`
+
+### Proof
+
+---
+
+## Not everything on a website can be put behind a shared Varnish
+
+### Assumptions
+1. There exists a setup where multiple teams create content for one website
+2. There exist at least two teams in the world that don't share the same tool/infrastructure
+
+### Statement
+If 1. and 2. are true there exists a number `x` of websites that are build by teams not sharing the same tools/infrastructure, where `x > 0`
+
+### Proof
+.red[
+  Ads
+]
+
+---
+
+class: center middle
+
+## Microfrontends in the Browser
+##  &nbsp;
+
+---
+
+class: center middle
+
+## Microfrontends in the Browser
+##  are really old
+
+---
+
+class: center middle full-width white
+background-image: url(images/matthias/microfrontend-in-the-browser.png)
+
+---
+
+class: center middle full-width white
+background-image: url(images/matthias/microfrontend-in-the-browser-wayback.png)
+
+---
+
+class: center middle
+
+## Microfrontends in the Browser
+##  are even older than that
+
+---
+
+class: center middle
+
+The wonderful world of (i)Frames
+  
+<iframe src="https://www.matthias-kainer.de" style="width:45%; display:inline-block; height: 400px;"></iframe>
+<iframe src="https://www.8select.com/events/l8-birds#upcomingspeaker" style="width:45%; display:inline-block; height: 400px;"></iframe>
+
+---
+
+class: center middle full-height white
+background-image: url(images/matthias/frames.png)
+
+---
+
+```html
+  <body>
+    <header><iframe src="/parts/shopping-card"></iframe></header>
+    <nav><!-- shared navigation --></nav>
+    <iframe id="micro-frontend-container"></iframe>
+
+    <script type="text/javascript">
+      const {search, pathname} = window.location;
+      const microFrontendsByRoute = {
+        '/': '/parts/search' + search,
+        '/product': '/parts/product' + search
+      };
+      document.getElementById('micro-frontend-container')
+        .src = microFrontendsByRoute[pathname];
+    </script>
+  </body>
+```
+
+---
+
+class: right middle
+
+## .green[✔] Very Simple
+## &nbsp;
+
+---
+
+class: right middle
+
+## .green[✔] Very Simple
+## .green[✔] Isolated
+
+---
+
+class: middle
+
+## .red[❌] Very Hard To Do Responsive
+## &nbsp;
+## &nbsp;
+## &nbsp;
+
+---
+
+class: middle
+
+## .red[❌] Very Hard To Do Responsive
+## .red[❌] Routing can be tricky
+## &nbsp;
+## &nbsp;
+
+---
+
+class: middle
+
+## .red[❌] Very Hard To Do Responsive
+## .red[❌] Routing can be tricky
+## .red[❌] SEO is "interesting"
+## &nbsp;
+
+---
+
+class: middle
+
+## .red[❌] Very Hard To Do Responsive
+## .red[❌] Routing can be tricky
+## .red[❌] SEO is "interesting"
+## .red[❌] Very Isolated (`window.postMessage` can help)
+
+---
+
+class: center middle
+
+## Detour: Communication in the Browser
+
+```javascript
+
+window.addEventListener("message", (evt) => {
+  if (evt.source === window && evt.origin === "https://matthias-kainer.de"){
+    console.log("Doing things with: ", evt.data)
+  } else {
+    console.log("not trusted")
+  }
+}, false);
+
+window.postMessage("The secret world of secrets is secret", "https://matthias-kainer.de")
+
+```
+
+---
+
+class: right middle
+
+## .green[✔] Immune to network lags!
+## &nbsp;
+## &nbsp;
+
+---
+
+class: right middle
+
+## .green[✔] Immune to network lags!
+## .green[✔] Can be made pretty secure (also against extensions)
+## &nbsp;
+
+---
+
+class: right middle
+
+## .green[✔] Immune to network lags!
+## .green[✔] Can be made pretty secure (also against extensions)
+## .green[✔] Very lightweight and can help you to think in events
+
+---
+
+class: middle
+
+## .red[❌] Needs some extra love from you to support things like queuing/delivery guarantees
+## &nbsp;
+## &nbsp;
+
+---
+
+class: middle
+
+## .red[❌] Needs some extra love from you to support things like queuing/delivery guarantees
+## .red[❌] If you can't trust yourself to not forget checks, then don't 
+## &nbsp;
+
+---
+
+class: middle
+
+## .red[❌] Needs some extra love from you to support things like queuing/delivery guarantees
+## .red[❌] If you can't trust yourself to not forget checks, then don't 
+## .red[❌] If you can't trust your user, don't rely solely on it
+
+---
+
+class: transition center middle
+
+# Module Loading
+## different approaches
+
+---
+
+class: center middle full-height white
+background-image: url(images/matthias/comparision.png)
+
+---
+
+class: center middle
+
+## Pinning the version for a dependency?
+### It's a .red[TECH DEBT], friend
+
+---
+
+class: center middle
+
+## single-spa
+### It's only one example, there are more
+
+---
+
+class: center middle
+
+## DEMO TIME
+
+---
+
+class: center middle
+
+```js
+      System.import("single-spa").then(function(singleSpa) {
+        singleSpa.registerApplication(
+          "@matthias-kainer/the-3000",
+          () => System.import("@matthias-kainer/the-3000"),
+          location => location.pathname.startsWith("/react")
+            || location.pathname.startsWith("/both")
+        );
+        singleSpa.registerApplication(
+          '@matthias-kainer/the-1337',
+          () => System.import('@matthias-kainer/the-1337'),
+          location => location.pathname.startsWith('/vue')
+            || location.pathname.startsWith("/both")
+        );
+        singleSpa.start();
+      });
+```
+
+---
+
+class: center middle
+
+## Wait, how does it import?!
+### Detour: Managing your imports in the browser with import-maps
+
+---
+
+class: center middle
+
+```html
+<script type="systemjs-importmap">
+  {
+    "imports": {
+      "react": "https://cdn.jsdelivr.net/npm/react@16.12.0/umd/react.production.min.js",
+      "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.12.0/umd/react-dom.production.min.js",
+      "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@4.4.1/lib/system/single-spa.min.js",
+      "@matthias-kainer/the-1337": "https://localhost:1337/js/app.js",
+      "@matthias-kainer/the-3000": "https://localhost:3000/matthias-kainer-the-3000.js"
+    }
+  }
+</script>
+```
+
+.bottom-right[
+https://wicg.github.io/import-maps/
+]
+
+---
+
+class: center middle
+
+## webpack
+
+---
+
+class: transition center middle
+
+# WebComponents 
+## Browser-supported Microfrontend-fragments
+
+---
+
+class: middle full-width white
+
+<video style="width:100%;height:100%;" playsinline="" autoplay="" muted="" loop="">
+  <source src="/images/matthias/digital clock - almost no updates.mp4" type="video/mp4">
+</video>
+
+.bottom-right.small.small-paragraph.right[
+a webcomponent with a clock
+
+using a webcomponent with digits
+]
+
+---
+
+class: center middle
+
+```js
+class ClockDigit extends HTMLElement {
+    constructor() { super(); }
+
+    get digit() { return this.getAttribute("digit"); }
+
+    set digit(value) {
+        this.setAttribute("digit", value); this._showDigit()
+    }
+
+    connectedCallback() { this._showDigit(); }
+
+    _showDigit() {
+        this.innerText = this.getAttribute("digit");
+    }
+}
+
+window.customElements.define(`digital-clock-character`, ClockDigit);
+```
+
+---
+
+class: full-width white
+
+<video style="width:100%;" playsinline="" autoplay="" muted="" loop="">
+  <source src="/images/matthias/webcomponent.mov" type="video/mp4">
+</video>
+
+.bottom-right.small.small-paragraph.right[
+https://jsfiddle.net/8p9q7jeu/2/
+]
+
+---
+
+class: right middle
+
+## .green[✔] Simple and lib-less
+## &nbsp;
+## &nbsp;
+
+---
+
+class: right middle
+
+## .green[✔] Simple and lib-less
+## .green[✔] As isolated as you need it
+## &nbsp;
+
+---
+
+class: right middle
+
+## .green[✔] Simple and lib-less
+## .green[✔] As isolated as you need it
+## .green[✔] Browser support is getting strong
+
+---
+
+class: middle
+
+## .red[❌] Chatty class-based inflexible structure
+## &nbsp;
+## &nbsp;
+
+---
+
+class: middle
+
+## .red[❌] Chatty class-based inflexible structure
+## .red[❌] Tracking attribute values can be hard
+## &nbsp;
+
+---
+
+class: middle
+
+## .red[❌] Chatty class-based inflexible structure
+## .red[❌] Tracking attribute values can be hard
+## .red[❌] A lot of things that would make your life easier (i.e. css styling tweaks, Constructible Stylesheets) still not widely supported or feels heavy/complicated
+
+---
+
+class: transition center middle
+
+# So... 
+## how do you have it with microfrontends?
+
+---
+
+class: center middle full-height white
+background-image: url(images/matthias/this-tall.jpg)
+
+---
 
