@@ -300,7 +300,7 @@ class: center middle
 
 class: transition
 
-# Integration approaches
+# Composition approaches
 
 ???
 
@@ -434,15 +434,26 @@ class: center middle
 
 ---
 
-class: center middle
+class: right middle
 
 ## .green[✔] Simple
 
+--
+
+## .green[✔] No runtime impact
+
 ---
 
-class: center middle
+class: left middle
 
 ## .red[❌] Independent deployments
+
+--
+
+
+class: left middle
+
+## .red[❌] Autonomy
 
 ---
 
@@ -573,6 +584,19 @@ class: transition center middle
 
 - Composition is not the only concern when working with microfrontends
 - if you are dividing your frontend in multiple smaller apps, all of them may need to communicate with a backend
+
+---
+
+class: center middle
+
+
+## What to avoid
+
+---
+
+class: center middle
+
+![backend-gateway](images/backend-gateway.png)
 
 ---
 
