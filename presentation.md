@@ -13,6 +13,10 @@ class: impact full-width
 # {{title}}
 ]
 
+???
+
+this a topic very relevant for us in our projects
+
 ---
 
 class: center middle
@@ -26,6 +30,8 @@ class: center middle
 - why would you use it
 - how can you get started
 
+- goal: walk away with an understanding of the pros and cons of the approach, and tips to get started
+
 ---
 
 class: transition
@@ -35,11 +41,20 @@ class: transition
  
  **Thought**Works
  
+???
+
+- both consultants
+- usually work together developing software with our clients, who are big german corporations
+ 
 ---
 
 class: center middle
 
 ## Everybody got into the microservices train
+
+???
+
+- everybody seems to be using microfrontends, regardless of whether it suits their problem or not
 
 ---
 
@@ -287,6 +302,10 @@ class: transition
 
 # Integration approaches
 
+???
+
+- I mentioned that our microfrotends need to be composed at some point. We want to talk about the alternatives that we have to do so
+
 ---
 
 class: center middle
@@ -355,6 +374,17 @@ class: center middle
 </BrowserRouter>
 ```
 
+???
+
+- integrate through components
+- something as simple as react router can be enough
+
+---
+
+class: center middle
+
+## Managing those packages
+
 ---
 
 class: center middle
@@ -383,6 +413,10 @@ packages/
   microfrontend1/
   microfrontend2/
 ```
+
+???
+
+- requires teams that collaborate closely together
 
 ---
 
@@ -432,6 +466,11 @@ class: center middle
 
 ## What is a SSI?
 
+
+???
+
+- not necessarily a new idea
+
 ---
 
 class: center middle
@@ -480,6 +519,10 @@ server {
 }
 ```
 
+???
+
+- those are assets that are accessible by our web server
+
 ---
 
 class: center middle
@@ -492,15 +535,15 @@ class: center middle
 
 ![microfrontends-ssi](images/microfrontends-ssi.png)
 
-???
-
-- not necessarily a new idea
-
 ---
 
 class: center middle
 
 ![microfrontends-ssi-zoom-in](images/microfrontends-ssi-zoom-in.png)
+
+???
+
+- these microfrontends can be fetched from a cdn or from some other destination
 
 ---
 
@@ -526,6 +569,11 @@ class: transition center middle
 
 # Backend interaction
 
+???
+
+- Composition is not the only concern when working with microfrontends
+- if you are dividing your frontend in multiple smaller apps, all of them may need to communicate with a backend
+
 ---
 
 class: center middle
@@ -541,7 +589,7 @@ samnewman.io/patterns/architectural/bff/
 class: center middle
 
 ## A custom backend for a particular client
-### Tightly coupled
+### Built together with the frontend 
 ### Owned by the same team
 
 ---
@@ -591,7 +639,7 @@ class: transition center middle
 
 class: center middle
 
-## Smaller clients => Smaller deployments
+## Smaller clients lead to Smaller deployments
 
 ---
 
