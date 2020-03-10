@@ -54,7 +54,19 @@ class: center middle
 
 ???
 
-- everybody seems to be using microfrontends, regardless of whether it suits their problem or not
+- everybody seems to be using microservices these days
+
+---
+
+class: center middle
+
+## Whether they actually needed or not 
+
+---
+
+class: center middle
+
+## What about the frontend, though?
 
 ---
 
@@ -327,7 +339,13 @@ class: transition center middle
 
 class: center middle
 
-## Divide the application into separate npm packages, which are deployed as one entity 
+## Divide the application into separate npm packages
+
+---
+
+class: center middle
+
+## Deploy them as one entity 
 
 ---
 
@@ -398,6 +416,7 @@ github.com/lerna/lerna
 ???
 
 - monorepo approach is possible
+- this is in fact what happened in my last project
 
 ---
 
@@ -431,6 +450,10 @@ class: center middle
   "packages": ["packages/*"]
 }
 ```
+
+???
+
+- `independent` is important as we want to release packages separately
 
 ---
 
@@ -550,6 +573,28 @@ class: center middle
 
 class: center middle
 
+
+```html
+<html lang="en" dir="ltr">
+ <body>
+    <!--# include file="$HEADER.html" -->
+    <main>
+      <!--# include file="$PAGE.html" -->
+    </main>
+    
+    <aside>
+      <!--# include file="$SIDEBAR.html" -->
+    </aside>
+
+    <!--# include file="$FOOTER.html" -->
+  </body>
+</html>
+```
+
+---
+
+class: center middle
+
 ![microfrontends-ssi-zoom-in](images/microfrontends-ssi-zoom-in.png)
 
 ???
@@ -558,13 +603,13 @@ class: center middle
 
 ---
 
-class: center middle
+class: right middle
 
 ## .green[✔] (Still) Simple
 
 ---
 
-class: center middle
+class: left middle
 
 ## .red[❌] Managing assets
 
