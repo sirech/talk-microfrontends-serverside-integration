@@ -728,24 +728,24 @@ class: center middle
 class: transition center middle
 
 # THEORY
-##  Not everything on a website can be put behind a shared Varnish
+##  Not everything on a website can be put behind a shared nginx
 
 ---
 
-## Not everything on a website can be put behind a shared Varnish
+## Not everything on a website can be put behind a shared nginx
 
 ### Assumptions
 
 ---
 
-## Not everything on a website can be put behind a shared Varnish
+## Not everything on a website can be put behind a shared nginx
 
 ### Assumptions
 1. There exists a setup where multiple teams create content for one website
 
 ---
 
-## Not everything on a website can be put behind a shared Varnish
+## Not everything on a website can be put behind a shared nginx
 
 ### Assumptions
 1. There exists a setup where multiple teams create content for one website
@@ -753,7 +753,7 @@ class: transition center middle
 
 ---
 
-## Not everything on a website can be put behind a shared Varnish
+## Not everything on a website can be put behind a shared nginx
 
 ### Assumptions
 1. There exists a setup where multiple teams create content for one website
@@ -764,7 +764,7 @@ If 1. and 2. are true there exists a number `x` of websites that are build by te
 
 ---
 
-## Not everything on a website can be put behind a shared Varnish
+## Not everything on a website can be put behind a shared nginx
 
 ### Assumptions
 1. There exists a setup where multiple teams create content for one website
@@ -777,7 +777,7 @@ If 1. and 2. are true there exists a number `x` of websites that are build by te
 
 ---
 
-## Not everything on a website can be put behind a shared Varnish
+## Not everything on a website can be put behind a shared nginx
 
 ### Assumptions
 1. There exists a setup where multiple teams create content for one website
@@ -1054,14 +1054,30 @@ class: center middle
 ```
 
 .bottom-right[
-https://wicg.github.io/import-maps/
+https://wicg.github.io/import-maps/ ![](images/matthias/rq-wcic-importmaps.gif)
 ]
+
+---
+
+class: center middle full-height white
+background-image: url(images/matthias/single-spa.png)
+
+---
+
+class: center middle full-height white
+background-image: url(images/matthias/single-spa-react.png)
 
 ---
 
 class: center middle
 
 ## webpack
+
+wait for it...
+
+.bottom-right[
+https://github.com/webpack/webpack/issues/10352 ![](images/matthias/qr-github-webpack.gif)
+]
 
 ---
 
