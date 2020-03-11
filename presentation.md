@@ -723,10 +723,6 @@ class: center middle
 
 ---
 
-THIS IS THE PRESENTATION BREAK SO THAT WE CAN ADD SLIDES WITHOUT GIT HAVING ISSUES AT THE END OF THE FILE
-
-Let's remember to remove that slide, shall we?
-
 ---
 
 class: transition center middle
