@@ -1094,12 +1094,6 @@ class: middle full-width white
   <source src="/images/matthias/digital clock - almost no updates.mp4" type="video/mp4">
 </video>
 
-.bottom-right.small.small-paragraph.right[
-a webcomponent with a clock
-
-using a webcomponent with digits
-]
-
 ---
 
 class: center middle
@@ -1131,10 +1125,6 @@ class: full-width white
 <video style="width:100%;" playsinline="" autoplay="" muted="" loop="">
   <source src="/images/matthias/webcomponent.mov" type="video/mp4">
 </video>
-
-.bottom-right.small.small-paragraph.right[
-https://jsfiddle.net/8p9q7jeu/2/
-]
 
 ---
 
