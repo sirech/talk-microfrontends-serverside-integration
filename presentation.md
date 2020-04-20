@@ -1133,6 +1133,7 @@ class: right middle
 ## .green[✔] Simple and lib-less
 ## &nbsp;
 ## &nbsp;
+## &nbsp;
 
 ---
 
@@ -1140,6 +1141,7 @@ class: right middle
 
 ## .green[✔] Simple and lib-less
 ## .green[✔] As isolated as you need it
+## &nbsp;
 ## &nbsp;
 
 ---
@@ -1149,6 +1151,38 @@ class: right middle
 ## .green[✔] Simple and lib-less
 ## .green[✔] As isolated as you need it
 ## .green[✔] Browser support is getting strong
+## &nbsp;
+
+---
+class: right middle
+
+## .green[✔] Simple and lib-less
+## .green[✔] As isolated as you need it
+## .green[✔] Browser support is getting strong
+## .green[✔] With things like `lit-element` more usable
+
+---
+
+```tsx
+@customElement("game-tile")
+export class Tile extends LitElement {
+  @property({ type: Object })
+  position: Position;
+
+  static get styles() {
+    return css`.tile {
+      display: inline-block;
+    }`;
+  }
+
+  render() {
+    return html`<div class="tile"
+      @click=${() => tileClicked(this.position)}
+    ><${debug ? this.position : ""}</div>`;
+  }
+}
+
+```
 
 ---
 
@@ -1173,6 +1207,25 @@ class: middle
 ## .red[❌] Chatty class-based inflexible structure
 ## .red[❌] Tracking attribute values can be hard
 ## .red[❌] A lot of things that would make your life easier (i.e. css styling tweaks, Constructible Stylesheets) still not widely supported or feels heavy/complicated
+
+---
+
+class: center middle
+
+# What I want
+
+---
+
+class: center middle
+
+## I want multiple builds/deployments hosted elsewhere to work together like a monolith
+
+---
+
+class: center middle
+
+#### I want multiple builds/deployments hosted elsewhere to work together like a monolith
+# 😔
 
 ---
 
